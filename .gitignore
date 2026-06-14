@@ -1,0 +1,72 @@
+# ==========================================
+# Xcode / iOS / Swift 基本設定
+# ==========================================
+
+# ユーザー固有の設定・状態（コミット厳禁）
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# ビルド成果物・キャッシュ・一時ファイル
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+
+# ==========================================
+# プレイグラウンド & 開発ツール
+# ==========================================
+playground.xcworkspace
+iOSInjectionProject/
+
+# ==========================================
+# パッケージマネージャー (SPM / CocoaPods / Carthage)
+# ==========================================
+# Swift Package Manager とそのバージョン固定ファイル（除外指定）
+.build/
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.swiftpm/xcode/xcshareddata/
+**/Package.resolved
+*/Package.resolved
+
+# CocoaPods & Carthage & その他
+Pods/
+Carthage/Build/
+Dependencies/
+.accio/
+
+# ==========================================
+# CI/CD & 自動化 (fastlane)
+# ==========================================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# ==========================================
+# macOS 固有のファイル
+# ==========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# ==========================================
+# セキュリティ・環境変数 (将来用)
+# ==========================================
+.env
+.env.*
+*.plist.secret
