@@ -17,7 +17,7 @@ final class AnalysisCategory {
     
     // 💡 リレーション：このカテゴリに属する分析ポイントたち　（消えたら何もしない）
     @Relationship(deleteRule: .noAction, inverse: \AnalysisPoint.category)
-    var points: [AnalysisPoint]
+    var points: [AnalysisPoint] = []
     
     init(name: String, hexColor: String, order: Int) {
         self.id = UUID()

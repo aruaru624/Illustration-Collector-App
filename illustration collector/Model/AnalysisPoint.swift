@@ -17,7 +17,7 @@ final class AnalysisPoint {
     var category: AnalysisCategory?
     
     // 親となる参考イラスト（ReferenceNode）への逆参照
-    var referenceNode: ReferenceNode?
+    var referenceNode: Reference?
     
     init(text: String, category: AnalysisCategory? = nil) {
         self.id = UUID()

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model 
-final class ReferenceNode {
+final class Reference {
     @Attribute(.unique) var id: UUID // IDをユニークキーに指定（マルチデバイスでの重複防止）
     var creatorName: String          // 描いた人（神絵師の名前など）
     var referenceUrlString: String?   // 参考資料のSNSやWebサイトのURL
@@ -21,10 +21,10 @@ final class ReferenceNode {
     @Attribute(.externalStorage) var analysisKitData: Data
     
     // カラーパレット（手動スポイトした16進数カラーコード [#FFFFFF] の配列）
-    var hexColorPalette: [String]
+    var hexColorPalette: [String] = []
     
     // 分析テキスト（カラーペンごとに自動分類されたテキストリスト）
-    var Points: [String]
+    var points: [AnalysisPoint] = []
     
     // 初期化（イニシャライザ）
     init(creatorName: String, referenceImageData: Data, analysisKitData: Data, referenceUrlString: String? = nil) {
@@ -36,7 +36,7 @@ final class ReferenceNode {
         self.referenceImageData = referenceImageData
         self.analysisKitData = analysisKitData
         self.hexColorPalette = []
-        self.Points = []
+        self.points = []
     }
     
 }

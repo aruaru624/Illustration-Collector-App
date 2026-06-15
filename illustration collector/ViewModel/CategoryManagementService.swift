@@ -49,3 +49,37 @@ class CategoryManagementService {
         try? context.save()
     }
 }
+
+
+@MainActor
+class InitialDataSeeder {
+    
+    /// アプリの初回起動時にデフォルトカテゴリ（「その他」含む）を用意する関数
+    static func seedDefaultCategoriesIfNeeded(context: ModelContext) {
+        // 1. 既にカテゴリが1つでも存在する場合は、初期化済みなので何もしない
+        let descriptor = FetchDescriptor<AnalysisCategory>()
+        if let existing = try? context.fetch(descriptor), !existing.isEmpty {
+            return
+        }
+        
+        // 2. 初期段階で用意するカテゴリのリスト
+        // ※「その他」は最後に並ぶように order を 999 などの大きな数値にしておきます
+        let defaultCategories = [
+            AnalysisCategory(name: "光・色使い", hexColor: "#FFD700", order: 0),
+            AnalysisCategory(name: "形·ポーズ・構図", hexColor: "#FF69B4", order: 1),
+            AnalysisCategory(name: "質感・ブラシ・詳細", hexColor: "#32CD32", order: 2),
+            
+            // ★ 初期段階から「その他」を確実に用意しておく
+            AnalysisCategory(name: "その他", hexColor: "#8E8E93", order: 999)
+        ]
+        
+        // 3. データベースに一括挿入
+        for category in defaultCategories {
+            context.insert(category)
+        }
+        
+        // 4. iCloud / ローカルに即時保存
+        try? context.save()
+        print("初期カテゴリ（「その他」含む）の作成に成功しました。")
+    }
+}
