@@ -17,7 +17,9 @@ struct illustration_collectorApp: App {
         let schema = Schema([
             ArtworkTag.self,
             ArtWork.self,
-            Reference.self
+            Reference.self,
+            AnalysisPoint.self,   // ★追加
+            AnalysisCategory.self // ★追加（パターン1の場合）
         ])
         // 本番用なので、デバイスのストレージに永続保存する設定（デフォルト）
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -32,7 +34,6 @@ struct illustration_collectorApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                // 💡 アプリのルート画面（HomeView）に対して、作ったコンテナを注入する
                 .modelContainer(sharedModelContainer)
         }
     }
